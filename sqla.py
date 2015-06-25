@@ -10,14 +10,9 @@ conn = sqlite3.connect("new.db")
 cursor = conn.cursor()
 
 # create a table 
-#cursor.execute("""CREATE TABLE population
-#				(city TEXT, state TEXT, population INT)
-#					""")
-
-# inserting some data
-cursor.execute("insert into population VALUES('Boulder', 'Colorado', 103166)")
-
-cursor.execute("insert into population VALUES('Huntsville', 'Alabama', 186254)")
+cursor.execute("""CREATE TABLE population
+				(city TEXT, state TEXT, population INT)
+					""")
 
 # commit the changes
 conn.commit()
