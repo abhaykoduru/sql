@@ -1,4 +1,4 @@
-# INSERT Command
+# INSERT Command with error handler
 
 # import the sqlite3 library
 import sqlite3
@@ -10,11 +10,17 @@ conn = sqlite3.connect("new.db")
 cursor = conn.cursor()
 
 # insert data
-cursor.execute("insert into population VALUES('New York City', 'NY', 8200000)")
-cursor.execute("insert into population VALUES('San Francisco', 'CA', 800000)")
+try:
+	cursor.execute("insert into population VALUES('New York City', 'NY', 8200000)")
+	cursor.execute("insert into population VALUES('San Francisco', 'CA', 800000)")
 
-# commit the changes
-conn.commit()
+
+	# commit the changes
+	conn.commit()
+
+except sqlite3.OperationalError:
+	print "Oops! Something went wrong. Try again..."
+
 
 # close the databse connection
 conn.close()
